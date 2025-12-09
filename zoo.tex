@@ -1,0 +1,146 @@
+\section{\Zoo: A framework for the verification of concurrent \OCamlFive programs}
+
+\begin{frame}{\Zoo}
+\centering
+\Huge
+\begin{tabular}{ccc}
+      \begin{tabular}{c}
+          \includegraphics[scale=.29]{images/ocaml.png}
+        \\
+          \includegraphics[scale=.12]{images/dune.png}
+      \end{tabular}      
+    &
+      \begingroup
+        \renewcommand{\arraystretch}{.8}
+        \begin{tabular}{c}
+            \Large\c{ocaml2zoo}
+          \\
+            $\step{\hskip3.5em}$
+        \end{tabular}
+      \endgroup
+    &
+      \begingroup
+        \renewcommand{\arraystretch}{1.8}
+        \begin{tabular}{c}
+            \includegraphics[scale=.6]{images/iris.png}
+          \\
+            \textcolor{color1}{\fontsize{40}{0}\selectfont Zoo}
+          \\
+            \includegraphics[scale=.24]{images/rocq.png}
+        \end{tabular}
+      \endgroup
+\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]{\Zoo in practice}
+\colorlet{domainslib}{blue}
+\colorlet{saturn}{red}
+\colorlet{scheduler}{cyan}
+\colorlet{stack}{orange}
+\centering
+\begin{tabular}{ccc}
+    \begin{minipage}{0.4\textwidth}\dirtree{%
+      .1 project.
+        .2 dune-project.
+        .2 lib.
+          .3 \textcolor{domainslib}{domainslib}.
+            .4 dune.
+            .4 \textcolor{scheduler}{scheduler.ml}.
+            .4 scheduler.mli.
+          .3 \textcolor{saturn}{saturn}.
+            .4 dune.
+            .4 \textcolor{stack}{stack.ml}.
+            .4 stack.mli.
+    }\end{minipage}
+  &
+    $\LARGE\step{\hskip2em}$
+  &
+    \begin{minipage}{0.4\textwidth}\dirtree{%
+      .1 theories.
+        .2 \textcolor{domainslib}{domainslib}.
+          .3 \textcolor{scheduler}{scheduler\_\_code.v}.
+          .3 \textcolor{scheduler}{scheduler\_\_types.v}.
+        .2 \textcolor{saturn}{saturn}.
+          .3 \textcolor{stack}{stack\_\_code.v}.
+          .3 \textcolor{stack}{stack\_\_types.v}.
+    }\end{minipage}
+\end{tabular}
+\vfill
+\begin{center}
+  \Large\c{\$ ocaml2zoo project theories}
+\end{center}
+\end{frame}
+
+\begin{frame}[fragile]{\Zoo in practice}
+\begin{adjustwidth}{-1em}{-1em}
+\begin{minipage}[t]{.49\textwidth}
+\begin{minted}{coq}
+Lemma stack_push_spec_seq t ι v :
+  {{{
+    stack_model t vs
+  }}}
+    stack_push t v
+  {{{
+    RET ();
+    stack_model t (v :: vs)
+  }}}.
+Proof.
+  ...
+Qed.
+\end{minted}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.5\textwidth}
+\begin{minted}{coq}
+Lemma stack_push_spec_atomic t ι v :
+  <<< 
+    stack_inv t ι
+  | ∀∀ vs,
+    stack_model t vs 
+  >>>
+    stack_push t v @ ↑ι
+  <<<
+    stack_model t (v :: vs)
+  | RET ();
+    True
+  >>>.
+Proof.
+  ...
+Qed.
+\end{minted}
+\end{minipage}
+\end{adjustwidth}
+\end{frame}
+
+\begin{frame}{\Zoo features}
+\Large
+\begin{minipage}[t]{.5\textwidth}
+\begin{itemize}
+  \item Algebraic data types
+  \item Records
+  \item Mutually recursive functions
+  \item Physical equality
+  \item Structural equality
+  \item Prophecy variables  
+  \item \Diaframe
+  \item Standard library
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.45\textwidth}
+\begin{itemize}
+  \item Atomic references
+  \item \textcolor{color2}{Atomic record fields}
+  \item \textcolor{color2}{Atomic arrays}
+  \item \textcolor{color2}{Generative constructors}
+\end{itemize}
+\end{minipage}
+\end{frame}
+
+% realistic language
+% realistic algorithms
+\begin{frame}{Contributions}
+\centering
+\Large
+\input{figures/zoo}
+\end{frame}

@@ -1,0 +1,44 @@
+\section{Chase-Lev work-stealing deque}
+
+\begin{frame}{Work-stealing}
+\centering
+\input{figures/work_stealing}
+\end{frame}
+
+\begin{frame}{Chase-Lev work-stealing deque}
+\centering
+\includegraphics[scale=.5]{images/chaselev_paper.pdf}
+\end{frame}
+
+% simplified version with one infinite array (as opposed to multiple circular arrays)
+\begin{frame}{Physical state}
+\centering
+\large
+\input{figures/chaselev_physical_state}
+\end{frame}
+
+% external future-dependent linearization point
+\begin{frame}{Logical state}
+\centering
+\input{figures/chaselev_logical_state}
+\end{frame}
+
+\begin{frame}{Prophecy variables / Prophets}
+\large
+\begin{itemize}
+  \setlength\itemsep{1em}
+  \item
+    \textbf{Primitive prophets} \\
+    Predict the future of the execution.
+  \item
+    \textbf{Typed prophets} \\
+    Prediction belongs to a user-supplied semantic type.
+  \item
+    \textbf{\textcolor{color2}{Wise prophets}} \\
+    Remember past predictions. \\
+    Eliminate inconsistent branches.
+  \item
+    \textbf{\textcolor{color2}{Multiplexed prophets}} \\
+    Separate logically independent predictions on a single prophet.
+\end{itemize}
+\end{frame}

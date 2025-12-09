@@ -1,0 +1,60 @@
+\section{Conclusion}
+
+\begin{frame}{Takeaway}
+\Large
+\textbf{\Iris-based verification frameworks can scale to real-life programming languages and large pieces of software.}
+\vfill
+\begin{itemize}
+  \item Practical verification framework.
+  \item Formalization of a realistic \OCaml subset.
+  \item Verification of realistic concurrent data structures.
+  \item Extensions of \Iris proof techniques.
+  \item \OCaml language improvements.
+\end{itemize}
+\begin{overbox}<2>[width=.95]
+  \textbf{Not mentioned in this presentation:}
+  \begin{itemize}
+    \item Memory safety.
+    \item ``Tail Modulo Cons'' program transformation.
+    \item Ongoing work on the verification of (parts of) the \OCaml GC.
+  \end{itemize}
+\end{overbox}
+\end{frame}
+
+\begin{frame}{Future work}
+\Large
+\begin{itemize}
+  \setlength\itemsep{1em}
+  \item
+    \textbf{Language features}
+    \begin{itemize}
+      \item Exceptions
+      \item Algebraic effects
+      \item Modules \& functors
+    \end{itemize}
+  \item
+    \textbf{Coupling with semi-automated verification}
+  \item
+    \textbf{Relaxed memory}
+\end{itemize}
+\end{frame}
+
+% transfer resources *and* memory views
+\begin{frame}{Relaxed memory}
+\Large
+{
+  \bfseries
+  Methodology by Glen Mével \etal:
+}
+\bigskip
+\begin{enumerate}
+  \setlength\itemsep{1em}
+  \item
+    Start with the invariant under sequential consistency;
+  \item
+    Identify how information flows between domains, \\
+    \ie where the \textcolor{color2}{synchronization} points are;
+  \item
+    Refine the invariant with \textcolor{color2}{memory views} accordingly.
+\end{enumerate}
+\end{frame}

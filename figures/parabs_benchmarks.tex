@@ -1,0 +1,16 @@
+\def\myfigure#1{
+  \begin{subfigure}[t]{.3\textwidth}
+    \centering
+    \includegraphics[scale=.2]{benchmarks/#1-plot_domains.data.svg.pdf}
+    \caption{\ocamlinline{#1}}
+  \end{subfigure}
+}
+
+\begin{figure}
+  \centering
+  \myfigure{fibonacci}
+  \myfigure{for_irregular}
+  \myfigure{iota}
+  \myfigure{lu}
+  \myfigure{matmul}
+\end{figure}

@@ -1,0 +1,225 @@
+\begin{frame}{Energy}
+\centering
+\includegraphics[scale=.095]{images/energy_consumption.png}
+\end{frame}
+
+\begin{frame}{Energy\dots{} for machines}
+\centering
+\includegraphics[scale=.5]{images/machines.jpg}
+\end{frame}
+
+\begin{frame}{Programming languages\dots{} to control machines}
+\centering
+\includegraphics[scale=.3]{images/programming_languages.jpg}
+\end{frame}
+
+\begin{frame}{Software failure: Cloudflare outage (18/11/2025)}
+\centering
+\Large
+\hfill
+\includegraphics[height=.5\textheight, valign=c, cframe=color1]{images/bug_cloudflare.png}
+\hfill
+{
+  \bfseries
+  \begin{tabular}{r}
+      3h outage
+    \\
+      (20\% of the web)
+  \end{tabular}
+}
+\vfill
+{
+  \bfseries
+  \begin{tabular}{l}
+      Bot management
+    \\
+      configuration file
+  \end{tabular}
+}
+\hfill
+\includegraphics[height=.3\textheight, valign=c, cframe=color1]{images/bug_cloudflare_cause.png}
+\hspace*{\fill}
+\end{frame}
+
+\begin{frame}{Software failure: Ariane 5 (04/06/1996)}
+\centering
+\Large
+\hfill
+\includegraphics[height=.4\textheight, valign=c]{images/bug_ariane.png}
+\hfill
+{
+  \bfseries
+  \$500M
+}
+\vfill
+{
+  \bfseries
+  \begin{tabular}{l}
+      Integer
+    \\
+      overflow
+  \end{tabular}
+}
+\hfill
+\includegraphics[height=.4\textheight, valign=c]{images/bug_ariane_cause.png}
+\hspace*{\fill}
+\end{frame}
+
+% concurrent programming is error-prone
+\begin{frame}{Software failure: Therac-25 (06/1985 - 01/1987)}
+\centering
+\Large
+\hfill
+\includegraphics[height=.4\textheight, valign=c]{images/bug_therac.jpg}
+\hfill
+{
+  \bfseries
+  6 human lives
+}
+\vfill
+{
+  \bfseries
+  \begin{tabular}{l}
+      Race condition
+    \\
+      (concurrency bug)
+  \end{tabular}
+}
+\hfill
+\includegraphics[height=.4\textheight, valign=c]{images/bug_therac_cause.pdf}
+\hspace*{\fill}
+\end{frame}
+
+\begin{frame}{Cost of Poor Software Quality (CPSQ) in the US in 2020}
+\centering
+\includegraphics[scale=.9]{images/cpsq_report.pdf}
+\end{frame}
+
+% rigorous mathematical characterization of the program behaviors (define semantics)
+% rigorous guarantees
+% property / specification
+\begin{frame}{Formal methods \\ Improve the confidence in software}
+\centering
+\input{figures/formal_methods_1}
+\end{frame}
+
+% proof assistants: manual proofs, but checked automatically
+{
+\def\footer{(Xavier Leroy)}
+\begin{frame}{Formal methods}
+\centering
+\input{figures/formal_methods_2}
+\end{frame}
+}
+
+\begin{frame}{Hoare logic}
+\centering
+\LARGE
+\begin{mathpar}
+    \iSpec{
+      \textcolor{color2}{\iProp}
+    }{
+      \textcolor{color1}{\zooExpr}
+    }[
+      \textcolor{color3}{\zooVal}
+    ]{
+      \textcolor{color2}{\iPropTwo}
+    }
+  \and
+    \begin{array}{l}
+        \text{precondition}
+      \\
+        \text{expression / instruction}
+      \\
+        \text{postcondition}
+    \end{array}
+\end{mathpar}
+\vfill
+\Large
+If the initial state satisfies \textcolor{color2}{\iProp}, \\
+\textcolor{color1}{\zooExpr} executes safely and returns a value \textcolor{color3}{\zooVal} \\
+such that the final state satisfies \textcolor{color2}{\iPropTwo}.
+\end{frame}
+
+% refinement / extension of Hoare logic
+% resources
+% local reasoning on programs with pointers
+% local reasoning on concurrent programs
+% ownership transfers
+% assertions are stable in the face of interference
+% particularly suited for concurrency
+\begin{frame}{Separation logic}
+\centering
+\Large
+\begin{tabular}{lll}
+    assuming facts & $\rightarrow$ & owning \textcolor{color2}{resources}
+  \\
+    global reasoning & $\rightarrow$ & local reasoning
+\end{tabular}
+\vfill
+\LARGE
+\begin{mathpar}
+    \iSpec{
+      \textcolor{color2}{\iProp}
+    }{
+      \zooExpr
+    }[
+      \zooVal
+    ]{
+      \textcolor{color2}{\iPropTwo}
+    }
+  \and
+    \iSpec{
+      \textcolor{color2}{\zooLoc \iPointsto \zooVal}
+    }{
+      !\zooLoc
+    }[
+      \v{res}
+    ]{
+      \v{res} = \zooVal \iSep
+      \textcolor{color2}{\zooLoc \iPointsto \zooVal}
+    }
+\end{mathpar}
+\vfill
+\Large
+Given \textcolor{color2}{resources \iProp}, \\
+\zooExpr executes safely and returns a value \zooVal \\
+and \textcolor{color2}{resources \iPropTwo}.
+\end{frame}
+
+{
+\def\footer{(Ilya Sergey)}
+\begin{frame}{Separation logic\underline{s}}
+\centering
+\includegraphics[scale=.45]{images/separation_logics.pdf}
+\end{frame}
+}
+
+% state-of-the-art separation logic
+% used to verify various fine-grained concurrent data structures
+\begin{frame}{\Iris separation logic}
+\centering
+\Large
+\hfill
+\includegraphics[scale=.7]{images/iris.png}
+\hfill
+\includegraphics[scale=.35]{images/rocq.png}
+\hspace*{\fill}
+\vfill
+\begin{minipage}[t]{.6\textwidth}
+\begin{itemize}
+  \item Higher-order ghost state
+  \item User-defined ghost state
+  \item Mechanized in \Rocq
+  \item Basic automation through \Diaframe
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.35\textwidth}
+\begin{itemize}
+  \item Invariants
+  \item Atomic updates
+  \item Prophecy variables
+\end{itemize}
+\end{minipage}
+\end{frame}

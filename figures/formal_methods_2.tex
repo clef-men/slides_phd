@@ -1,0 +1,14 @@
+\begin{tikzpicture}[scale=6]
+  \tzaxes (-.1,-.1) (1.4,1) {Expressivity} {Automation}
+  \tzarc' [dashed, color1] "fun" (1,1) (188:-95:.95)
+
+  \def\mynode#1#2#3{
+    \tzvXpointat* [#3] {fun} {#1} {#2} [above right, #3] (3.5pt)
+  }
+  \mynode{.08}{Type inference}{color1}
+  \mynode{.15}{Static analysis}{color1}
+  \mynode{.3}{Model checking}{color1}
+  \mynode{.5}{Deductive verification}{color1}
+  \mynode{.8}{Proof assistants}{color2}
+\end{tikzpicture}
+
