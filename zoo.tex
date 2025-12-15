@@ -72,44 +72,65 @@
 \end{frame}
 
 \begin{frame}[fragile]{\Zoo in practice}
-\begin{adjustwidth}{-1em}{-1em}
-\begin{minipage}[t]{.49\textwidth}
-\begin{minted}{coq}
-Lemma stack_push_spec_seq t ι v :
-  {{{
-    stack_model t vs
-  }}}
-    stack_push t v
-  {{{
-    RET ();
-    stack_model t (v :: vs)
-  }}}.
-Proof.
-  ...
-Qed.
-\end{minted}
-\end{minipage}
-\hfill
+\centering
+\large
+\begin{ocamlcode}
+let rec push t v =
+  let old = Atomic.get t in
+  let new_ = v :: old in
+  if not (Atomic.compare_and_set t old new_) then (
+    Domain.cpu_relax () ;
+    push t v
+  )
+\end{ocamlcode}
+\vspace{-1cm}
+\hfill \includegraphics[scale=.1]{images/ocaml.png}
+\medskip
+\hrule
+\medskip
+\hfill \includegraphics[scale=.17]{images/rocq.png}
+\vspace{-.7cm}
+\begin{coqcode}
+Definition stack_push : val :=
+  rec: "stack_push" "t" "v" =>
+    let: "old" := !"t" in
+    let: "new" := ‘Cons( "v", "old" ) in
+    if: ~ CAS "t" "old" "new" then (
+      domain_cpu_relax () ;;
+      "stack_push" "t" "v"
+    ).
+\end{coqcode}
+\end{frame}
+
+\begin{frame}[fragile]{\Zoo in practice}
+\centering
+\Large
 \begin{minipage}[t]{.5\textwidth}
-\begin{minted}{coq}
-Lemma stack_push_spec_atomic t ι v :
+\begin{coqcode}
+Lemma stack_push_spec t ι v :
   <<< 
     stack_inv t ι
-  | ∀∀ vs,
-    stack_model t vs 
+  | ∀∀ vs, stack_model t vs 
   >>>
     stack_push t v @ ↑ι
-  <<<
+  <<< 
     stack_model t (v :: vs)
-  | RET ();
-    True
+  | RET (); True
   >>>.
-Proof.
-  ...
-Qed.
-\end{minted}
+Proof. ... Qed.
+\end{coqcode}
 \end{minipage}
-\end{adjustwidth}
+\hfill
+\begin{minipage}[t]{.4\textwidth}
+\centering
+\strut \\
+\strut \\
+\strut \\
+\strut \\
+\strut \\
+\c{stack\_push} is \\
+\emph{linearizable}
+\end{minipage}
 \end{frame}
 
 \begin{frame}{\Zoo features}

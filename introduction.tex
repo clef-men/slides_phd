@@ -90,10 +90,13 @@
 \hspace*{\fill}
 \end{frame}
 
+{
+\def\footer{(Consortium for Information \& Software Quality)}
 \begin{frame}{Cost of Poor Software Quality (CPSQ) in the US in 2020}
 \centering
 \includegraphics[scale=.9]{images/cpsq_report.pdf}
 \end{frame}
+}
 
 % rigorous mathematical characterization of the program behaviors (define semantics)
 % rigorous guarantees
@@ -112,7 +115,7 @@
 \end{frame}
 }
 
-\begin{frame}{Hoare logic}
+\begin{frame}{Hoare logic (1969)}
 \centering
 \LARGE
 \begin{mathpar}
@@ -148,7 +151,7 @@ such that the final state satisfies \textcolor{color2}{\iPropTwo}.
 % ownership transfers
 % assertions are stable in the face of interference
 % particularly suited for concurrency
-\begin{frame}{Separation logic}
+\begin{frame}{Separation logic (2001)}
 \centering
 \Large
 \begin{tabular}{lll}
@@ -197,7 +200,7 @@ and \textcolor{color2}{resources \iPropTwo}.
 
 % state-of-the-art separation logic
 % used to verify various fine-grained concurrent data structures
-\begin{frame}{\Iris separation logic}
+\begin{frame}{\Iris separation logic (2015)}
 \centering
 \Large
 \hfill
