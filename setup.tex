@@ -25,9 +25,12 @@
 }
 
 \AtBeginSection[]{
-	\begin{frame}
-		\tableofcontents[currentsection]
-	\end{frame}
+  {
+    \setbeamertemplate{footline}{}
+    \begin{frame}[noframenumbering]
+      \tableofcontents[currentsection]
+    \end{frame}
+  }
 }
 
 %----------------------------------------
