@@ -116,34 +116,34 @@
 \end{frame}
 }
 
-\begin{frame}{Hoare logic (1969)}
-\centering
-\LARGE
-\begin{mathpar}
-    \iSpec{
-      \textcolor{color2}{\iProp}
-    }{
-      \textcolor{color1}{\zooExpr}
-    }[
-      \textcolor{color3}{\zooVal}
-    ]{
-      \textcolor{color2}{\iPropTwo}
-    }
-  \and
-    \begin{array}{l}
-        \text{precondition}
-      \\
-        \text{expression / instruction}
-      \\
-        \text{postcondition}
-    \end{array}
-\end{mathpar}
-\vfill
-\Large
-If the initial state satisfies \textcolor{color2}{\iProp}, \\
-\textcolor{color1}{\zooExpr} executes safely and returns a value \textcolor{color3}{\zooVal} \\
-such that the final state satisfies \textcolor{color2}{\iPropTwo}.
-\end{frame}
+%\begin{frame}{Hoare logic (1969)}
+%\centering
+%\LARGE
+%\begin{mathpar}
+%    \iSpec{
+%      \textcolor{color2}{\iProp}
+%    }{
+%      \textcolor{color1}{\zooExpr}
+%    }[
+%      \textcolor{color3}{\zooVal}
+%    ]{
+%      \textcolor{color2}{\iPropTwo}
+%    }
+%  \and
+%    \begin{array}{l}
+%        \text{precondition}
+%      \\
+%        \text{expression / instruction}
+%      \\
+%        \text{postcondition}
+%    \end{array}
+%\end{mathpar}
+%\vfill
+%\Large
+%If the initial state satisfies \textcolor{color2}{\iProp}, \\
+%\textcolor{color1}{\zooExpr} executes safely and returns a value \textcolor{color3}{\zooVal} \\
+%such that the final state satisfies \textcolor{color2}{\iPropTwo}.
+%\end{frame}
 
 % refinement / extension of Hoare logic
 % resources
@@ -152,78 +152,78 @@ such that the final state satisfies \textcolor{color2}{\iPropTwo}.
 % ownership transfers
 % assertions are stable in the face of interference
 % particularly suited for concurrency
-\begin{frame}{Separation logic (2001)}
-\centering
-\Large
-\begin{tabular}{lll}
-    assuming facts & $\rightarrow$ & owning \textcolor{color2}{resources}
-  \\
-    global reasoning & $\rightarrow$ & local reasoning
-\end{tabular}
-\vfill
-\LARGE
-\begin{mathpar}
-    \iSpec{
-      \textcolor{color2}{\iProp}
-    }{
-      \zooExpr
-    }[
-      \zooVal
-    ]{
-      \textcolor{color2}{\iPropTwo}
-    }
-  \and
-    \iSpec{
-      \textcolor{color2}{\zooLoc \iPointsto \zooVal}
-    }{
-      !\zooLoc
-    }[
-      \v{res}
-    ]{
-      \v{res} = \zooVal \iSep
-      \textcolor{color2}{\zooLoc \iPointsto \zooVal}
-    }
-\end{mathpar}
-\vfill
-\Large
-Given \textcolor{color2}{resources \iProp}, \\
-\zooExpr executes safely and returns a value \zooVal \\
-and \textcolor{color2}{resources \iPropTwo}.
-\end{frame}
+%\begin{frame}{Separation logic (2001)}
+%\centering
+%\Large
+%\begin{tabular}{lll}
+%    assuming facts & $\rightarrow$ & owning \textcolor{color2}{resources}
+%  \\
+%    global reasoning & $\rightarrow$ & local reasoning
+%\end{tabular}
+%\vfill
+%\LARGE
+%\begin{mathpar}
+%    \iSpec{
+%      \textcolor{color2}{\iProp}
+%    }{
+%      \zooExpr
+%    }[
+%      \zooVal
+%    ]{
+%      \textcolor{color2}{\iPropTwo}
+%    }
+%  \and
+%    \iSpec{
+%      \textcolor{color2}{\zooLoc \iPointsto \zooVal}
+%    }{
+%      !\zooLoc
+%    }[
+%      \v{res}
+%    ]{
+%      \v{res} = \zooVal \iSep
+%      \textcolor{color2}{\zooLoc \iPointsto \zooVal}
+%    }
+%\end{mathpar}
+%\vfill
+%\Large
+%Given \textcolor{color2}{resources \iProp}, \\
+%\zooExpr executes safely and returns a value \zooVal \\
+%and \textcolor{color2}{resources \iPropTwo}.
+%\end{frame}
 
-{
-\def\footer{(Ilya Sergey)}
-\begin{frame}{Separation logic\underline{s}}
-\centering
-\includegraphics[scale=.45]{images/separation_logics.pdf}
-\end{frame}
-}
+%{
+%\def\footer{(Ilya Sergey)}
+%\begin{frame}{Separation logic\underline{s}}
+%\centering
+%\includegraphics[scale=.45]{images/separation_logics.pdf}
+%\end{frame}
+%}
 
 % state-of-the-art separation logic
 % used to verify various fine-grained concurrent data structures
-\begin{frame}{\Iris separation logic (2015)}
-\centering
-\Large
-\hfill
-\includegraphics[scale=.7]{images/iris.png}
-\hfill
-\includegraphics[scale=.35]{images/rocq.png}
-\hspace*{\fill}
-\vfill
-\begin{minipage}[t]{.6\textwidth}
-\begin{itemize}
-  \item Higher-order ghost state
-  \item User-defined ghost state
-  \item Mechanized in \Rocq
-  \item Basic automation through \Diaframe
-\end{itemize}
-\end{minipage}
-\hfill
-\begin{minipage}[t]{.35\textwidth}
-\begin{itemize}
-  \item Invariants
-  \item Atomic updates
-  \item Prophecy variables
-\end{itemize}
-\end{minipage}
-\end{frame}
+%\begin{frame}{\Iris separation logic (2015)}
+%\centering
+%\Large
+%\hfill
+%\includegraphics[scale=.7]{images/iris.png}
+%\hfill
+%\includegraphics[scale=.35]{images/rocq.png}
+%\hspace*{\fill}
+%\vfill
+%\begin{minipage}[t]{.6\textwidth}
+%\begin{itemize}
+%  \item Higher-order ghost state
+%  \item User-defined ghost state
+%  \item Mechanized in \Rocq
+%  \item Basic automation through \Diaframe
+%\end{itemize}
+%\end{minipage}
+%\hfill
+%\begin{minipage}[t]{.35\textwidth}
+%\begin{itemize}
+%  \item Invariants
+%  \item Atomic updates
+%  \item Prophecy variables
+%\end{itemize}
+%\end{minipage}
+%\end{frame}

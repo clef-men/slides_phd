@@ -52,6 +52,35 @@ From \OCamlFive (2022):
 \end{tabular}
 \end{frame}
 
+% state-of-the-art separation logic
+% used to verify various fine-grained concurrent data structures
+\begin{frame}{\Iris separation logic (2015)}
+\centering
+\Large
+\hfill
+\includegraphics[scale=.7]{images/iris.png}
+\hfill
+\includegraphics[scale=.35]{images/rocq.png}
+\hspace*{\fill}
+\vfill
+\begin{minipage}[t]{.6\textwidth}
+\begin{itemize}
+  \item Higher-order ghost state
+  \item User-defined ghost state
+  \item Mechanized in \Rocq
+  \item Basic automation through \Diaframe
+\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.35\textwidth}
+\begin{itemize}
+  \item Invariants
+  \item Atomic updates
+  \item Prophecy variables
+\end{itemize}
+\end{minipage}
+\end{frame}
+
 \begin{frame}[fragile]{\Zoo in practice}
 \colorlet{domainslib}{blue}
 \colorlet{saturn}{red}
